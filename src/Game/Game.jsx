@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./DinoGame.css"; // External CSS for styling
 
 const Game = () => {
@@ -6,18 +6,29 @@ const Game = () => {
   const [obstaclePosition, setObstaclePosition] = useState(100);
   const [isGameOver, setIsGameOver] = useState(false);
 
+  const dinoRef = useRef(null);
+  const obstacleRef = useRef(null);
+
   useEffect(() => {
     // Handle jumping
     const handleKeyDown = (event) => {
       if (event.code === "Space" && !isJumping) {
         setIsJumping(true);
-        setTimeout(() => setIsJumping(false), 200); // Jump duration
+        setTimeout(() => setIsJumping(false), 300); // Jump duration
       }
     };
 
     // Check for collisions
     const checkCollision = () => {
-      if (obstaclePosition > 0 && obstaclePosition < 10 && !isJumping) {
+      const dinoRect = dinoRef.current.getBoundingClientRect();
+      const obstacleRect = obstacleRef.current.getBoundingClientRect();
+
+      if (
+        dinoRect.left < obstacleRect.right &&
+        dinoRect.right > obstacleRect.left &&
+        dinoRect.top < obstacleRect.bottom &&
+        dinoRect.bottom > obstacleRect.top
+      ) {
         setIsGameOver(true);
       }
     };
@@ -50,8 +61,9 @@ const Game = () => {
     <div className="game-container">
       <h1 className="game-title">Dino Game</h1>
       <div className="game-screen">
-        <div className={`dino ${isJumping ? "jump" : ""}`}></div>
+        <div ref={dinoRef} className={`dino ${isJumping ? "jump" : ""}`}></div>
         <div
+          ref={obstacleRef}
           className="obstacle"
           style={{ left: `${obstaclePosition}%` }}
         ></div>

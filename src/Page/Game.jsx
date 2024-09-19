@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./DinoGame.css"; // External CSS for styling
 
 const Game = () => {
@@ -6,7 +6,13 @@ const Game = () => {
   const [obstaclePosition, setObstaclePosition] = useState(100);
   const [isGameOver, setIsGameOver] = useState(false);
   const [score, setScore] = useState(0);
-
+  const [click, setClick] = useState(false);
+  const dinoRef = useRef(null);
+  const obstacleRef = useRef(null);
+  const handleClick = () => {
+    setClick(true);
+  };
+  console.log(click);
   useEffect(() => {
     // Handle jumping
     const handleKeyDown = (event) => {
@@ -18,13 +24,21 @@ const Game = () => {
 
     // Check for collisions
     const checkCollision = () => {
-      if (obstaclePosition > 0 && obstaclePosition < 15 && !isJumping) {
+      const dinoRect = dinoRef.current.getBoundingClientRect();
+      const obstacleRect = obstacleRef.current.getBoundingClientRect();
+
+      if (
+        dinoRect.left < obstacleRect.right &&
+        dinoRect.right > obstacleRect.left &&
+        dinoRect.top < obstacleRect.bottom &&
+        dinoRect.bottom > obstacleRect.top
+      ) {
         setIsGameOver(true);
       }
     };
 
     // Add event listener for jump
-    document.addEventListener("keyup", handleKeyDown);
+    document.addEventListener("keydown", handleKeyDown);
 
     // Move the obstacle
     const obstacleTimer = setInterval(() => {
@@ -33,7 +47,6 @@ const Game = () => {
           prevPosition > 0 ? prevPosition - 2 : 100
         );
         checkCollision();
-        // Increase score as the obstacle moves (player survives)
         setScore((prevScore) => prevScore + 1);
       }
     }, 20);
@@ -47,23 +60,25 @@ const Game = () => {
   const restartGame = () => {
     setIsGameOver(false);
     setObstaclePosition(100);
-    setScore(0); // Reset score when game restarts
+    setScore(0);
   };
 
   return (
     <div className="game-container">
       <h1 className="game-title">Dino Game</h1>
       <div className="game-screen">
-        <div>
-          <span className="font-bold">Score: </span>
-          {score}
-        </div>
-        <div className={`dino ${isJumping ? "jump" : ""}`}></div>
+        <div ref={dinoRef} className={`dino ${isJumping ? "jump" : ""}`}></div>
         <div
+          ref={obstacleRef}
           className="obstacle"
           style={{ left: `${obstaclePosition}%` }}
         ></div>
       </div>
+      <div className="score">Score: {score}</div> {/* Display the score */}
+      <div className="btn game_button" onClick={() => handleClick()}>
+        Jump
+      </div>{" "}
+      {/* Display the score */}
       {isGameOver && (
         <div className="game-over">
           <h2>Game Over!</h2>
