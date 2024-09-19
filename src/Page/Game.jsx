@@ -6,12 +6,17 @@ const Game = () => {
   const [obstaclePosition, setObstaclePosition] = useState(100);
   const [isGameOver, setIsGameOver] = useState(false);
   const [score, setScore] = useState(0);
-  const [click, setClick] = useState(false);
+  const [click, setClick] = useState(true);
   const dinoRef = useRef(null);
   const obstacleRef = useRef(null);
   const handleClick = () => {
     setClick(true);
+    if (click === true) {
+      setIsJumping(true);
+      setTimeout(() => setIsJumping(false), 300); // Jump duration
+    }
   };
+
   console.log(click);
   useEffect(() => {
     // Handle jumping
@@ -53,6 +58,7 @@ const Game = () => {
 
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
+
       clearInterval(obstacleTimer);
     };
   }, [isJumping, obstaclePosition, isGameOver]);
@@ -65,8 +71,10 @@ const Game = () => {
 
   return (
     <div className="game-container">
-      <h1 className="game-title">Dino Game</h1>
+      <h1 className="game-title font-bold">University Life</h1>
+      <p>Press spacebar or click jump</p>
       <div className="game-screen">
+        <div className="score">Score: {score}</div> {/* Display the score */}
         <div ref={dinoRef} className={`dino ${isJumping ? "jump" : ""}`}></div>
         <div
           ref={obstacleRef}
@@ -74,7 +82,6 @@ const Game = () => {
           style={{ left: `${obstaclePosition}%` }}
         ></div>
       </div>
-      <div className="score">Score: {score}</div> {/* Display the score */}
       <div className="btn game_button" onClick={() => handleClick()}>
         Jump
       </div>{" "}
