@@ -18,8 +18,86 @@
   background-color: green;
   position: absolute;
   bottom: 0;
-  left: 50px;
+  left: 5px;
   transition: bottom 0.2s;
+}
+
+@media screen and (min-width: 375px) {
+  .dino {
+    width: 40px;
+    height: 40px;
+    background-color: green;
+    position: absolute;
+    bottom: 0;
+    left: 5px;
+    transition: bottom 0.2s;
+  }
+}
+@media (min-width: 376px) and (max-width: 426px) {
+  .dino {
+    width: 40px;
+    height: 40px;
+    background-color: green;
+    position: absolute;
+    bottom: 0;
+    left: 12px;
+    transition: bottom 0.2s;
+  }
+}
+@media (min-width: 427px) and (max-width: 600px) {
+  .dino {
+    width: 40px;
+    height: 40px;
+    background-color: green;
+    position: absolute;
+    bottom: 0;
+    left: 6%;
+    transition: bottom 0.2s;
+  }
+}
+@media (min-width: 600px) and (max-width: 768px) {
+  .dino {
+    width: 40px;
+    height: 40px;
+    background-color: green;
+    position: absolute;
+    bottom: 0;
+    left: 7%;
+    transition: bottom 0.2s;
+  }
+}
+@media (min-width: 769px) and (max-width: 1025px) {
+  .dino {
+    width: 40px;
+    height: 40px;
+    background-color: green;
+    position: absolute;
+    bottom: 0;
+    left: 8%;
+    transition: bottom 0.2s;
+  }
+}
+@media (min-width: 1026px) and (max-width: 1440px) {
+  .dino {
+    width: 40px;
+    height: 40px;
+    background-color: green;
+    position: absolute;
+    bottom: 0;
+    left: 9%;
+    transition: bottom 0.2s;
+  }
+}
+@media (min-width: 1441px) and (max-width: 2560px) {
+  .dino {
+    width: 40px;
+    height: 40px;
+    background-color: green;
+    position: absolute;
+    bottom: 0;
+    left: 10.5%;
+    transition: bottom 0.2s;
+  }
 }
 
 .dino.jump {

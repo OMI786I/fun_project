@@ -18,7 +18,7 @@ const Game = () => {
 
     // Check for collisions
     const checkCollision = () => {
-      if (obstaclePosition > 0 && obstaclePosition < 10 && !isJumping) {
+      if (obstaclePosition > 0 && obstaclePosition < 15 && !isJumping) {
         setIsGameOver(true);
       }
     };
