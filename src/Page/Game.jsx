@@ -7,8 +7,10 @@ const Game = () => {
   const [isGameOver, setIsGameOver] = useState(false);
   const [score, setScore] = useState(0);
   const [click, setClick] = useState(true);
+  const [life, setLife] = useState(21);
   const dinoRef = useRef(null);
   const obstacleRef = useRef(null);
+  console.log(life);
   const handleClick = () => {
     setClick(true);
     if (click === true) {
@@ -38,9 +40,13 @@ const Game = () => {
         dinoRect.top < obstacleRect.bottom &&
         dinoRect.bottom > obstacleRect.top
       ) {
-        setIsGameOver(true);
+        setLife(life - 1);
       }
     };
+
+    if (life === 0) {
+      setIsGameOver(true);
+    }
 
     // Add event listener for jump
     document.addEventListener("keydown", handleKeyDown);
@@ -67,6 +73,7 @@ const Game = () => {
     setIsGameOver(false);
     setObstaclePosition(100);
     setScore(0);
+    setLife(21);
   };
 
   return (
@@ -74,7 +81,17 @@ const Game = () => {
       <h1 className="game-title font-bold">University Life</h1>
       <p>Press spacebar or click jump</p>
       <div className="game-screen">
-        <div className="score">Score: {score}</div> {/* Display the score */}
+        <div className="score flex justify-center gap-5 ">
+          <div>
+            <span className="font-bold">Life: </span>
+            {Math.ceil(life / 10)}
+          </div>
+          <p>
+            {" "}
+            <span className="font-bold">Score:</span> {score}
+          </p>
+        </div>{" "}
+        {/* Display the score */}
         <div ref={dinoRef} className={`dino ${isJumping ? "jump" : ""}`}></div>
         <div
           ref={obstacleRef}
