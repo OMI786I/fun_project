@@ -10,6 +10,7 @@ import Score from "./Page/Score";
 import Game from "./Page/Game";
 import TicTacToe from "./Game/TicTacTOe/TicTacToe";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Feedback from "./Page/Feedback";
 const queryClient = new QueryClient();
 const router = createBrowserRouter([
   {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
       {
         path: "/tictactoe",
         element: <TicTacToe />,
+      },
+      {
+        path: "/feedback",
+        element: <Feedback />,
       },
     ],
   },
