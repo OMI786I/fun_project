@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./DinoGame.css"; // External CSS for styling
-
+import { Modal } from "react-responsive-modal";
+import "react-responsive-modal/styles.css";
 const Game = () => {
+  const [open, setOpen] = React.useState(false);
   const [isJumping, setIsJumping] = useState(false);
   const [obstaclePosition, setObstaclePosition] = useState(100);
   const [isGameOver, setIsGameOver] = useState(false);
@@ -78,6 +80,25 @@ const Game = () => {
 
   return (
     <div className="game-container">
+      <Modal open={open} onClose={() => setOpen(false)}>
+        <h2>Try tabbing/shift-tabbing thru elements</h2>
+        <form action="">
+          <p>
+            <label htmlFor="firstName">
+              First name (I should be focused be default)
+              <input type="text" />
+            </label>
+          </p>
+          <p>
+            <label htmlFor="lastName">
+              Last name
+              <input type="text" />
+            </label>
+          </p>
+          <button>test</button>
+          <input type="submit" value="Submit" />
+        </form>
+      </Modal>
       <h1 className="game-title font-bold">Retake Dodger</h1>
       <p>Press spacebar or click jump</p>
       <div className="game-screen">
@@ -112,9 +133,15 @@ const Game = () => {
           <h2 className="bg-red-600 w-[30%] mx-auto text-white my-4 rounded-xl">
             Re Add!
           </h2>
-          <button className="game_button" onClick={restartGame}>
-            Restart
-          </button>
+          <div className="flex gap-4 justify-center">
+            {" "}
+            <button className="game_button" onClick={restartGame}>
+              Restart
+            </button>
+            <button className="game_button" onClick={() => setOpen(true)}>
+              Save Score
+            </button>
+          </div>
         </div>
       )}
     </div>
