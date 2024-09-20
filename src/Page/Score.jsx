@@ -1,17 +1,33 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 
 const Score = () => {
   const [asc, setAsc] = useState(true);
+  const [searchData, setSearchData] = useState("");
   const { isPending, error, data, refetch } = useQuery({
-    queryKey: ["repoData"],
+    queryKey: ["repoData", searchData],
     queryFn: () =>
-      fetch(`http://localhost:5000/score?sort=${asc ? "asc" : "desc"}`).then(
-        (res) => res.json()
-      ),
+      fetch(
+        `http://localhost:5000/score?sort=${
+          asc ? "asc" : "desc"
+        }&search=${searchData}`
+      ).then((res) => res.json()),
   });
 
-  console.log(data);
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    setSearchData(data.search);
+    refetch();
+  };
+
+  console.log(searchData);
   if (isPending) return "Loading...";
 
   if (error) return "An error has occurred: " + error.message;
@@ -31,6 +47,18 @@ const Score = () => {
           >
             {asc ? "Low to High" : "High to Low"}
           </button>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="flex space-x-4 items-center"
+          >
+            <input
+              {...register("search")}
+              type="text"
+              placeholder="Search..."
+              className="input input-bordered w-full max-w-xs"
+            />
+            <input className="btn btn-primary" type="submit" value="Search" />
+          </form>
         </div>
       </div>
 
