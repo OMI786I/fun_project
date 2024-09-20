@@ -6,7 +6,7 @@ import groovyWalkAnimation from "./groovyWalk.json";
 const Banner = () => {
   return (
     <div>
-      <div className="hero animated-gradient min-h-screen">
+      <div className="hero animated-gradient min-h-screen lg:min-h-96">
         {/* Flex container for side-by-side layout */}
         <div className="hero-content flex flex-col md:flex-row items-center justify-center text-center md:text-left">
           {/* Left side: Text content */}

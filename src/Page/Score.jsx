@@ -73,7 +73,7 @@ const Score = () => {
 
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="flex space-x-4 items-center"
+            className="flex flex-col sm:flex-row space-x-0 sm:space-x-4 items-center"
           >
             <input
               {...register("search")}
@@ -110,7 +110,7 @@ const Score = () => {
         </div>
 
         {/* Pagination Buttons */}
-        <div className="flex justify-center my-4">
+        <div className="flex gap-1 justify-center my-4">
           {totalPages.map((page) => (
             <button
               className="btn btn-primary"

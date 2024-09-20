@@ -10,11 +10,11 @@ const PreviosProjects = () => {
   }, []);
   console.log(data);
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-3 my-12">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-3 my-12 ">
       {data.map((res) => (
         <div
           key={res.id}
-          className="card card-compact bg-base-100 w-72 md:w-96 shadow-xl"
+          className="card card-compact bg-base-100 w-full md:w-80 xl:w-[300px] 2xl:w-96 shadow-xl"
         >
           <figure>
             <img src={res.image} className="w-80" alt="Shoes" />

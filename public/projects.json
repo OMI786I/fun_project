@@ -23,41 +23,48 @@
   {
     "id": 4,
     "title": "Project-4",
+    "link": "https://sprightly-meerkat-fa4450.netlify.app/",
+    "description": "4th project made with javascript DOM",
+    "image": "./assets/react_dom.PNG"
+  },
+  {
+    "id": 5,
+    "title": "Project-5",
     "link": "https://lyrical-women.surge.sh",
     "description": "Single Page Application made with React",
     "image": "./assets/project_4.PNG"
   },
   {
-    "id": 5,
-    "title": "Project-5",
+    "id": 6,
+    "title": "Project-6",
     "link": "https://illustrious-eclair-cf198e.netlify.app",
     "description": "Made With React router a full single page application",
     "image": "./assets/assignment_5.PNG"
   },
   {
-    "id": 6,
-    "title": "Project-6",
+    "id": 7,
+    "title": "Project-7",
     "link": "https://reset-assignment-9.web.app",
     "description": "Made with react and first introduced authentication means to login and sign up",
     "image": "./assets/project_6.PNG"
   },
   {
-    "id": 7,
-    "title": "Project-7",
+    "id": 8,
+    "title": "Project-8",
     "link": "https://reset-assignment-10.web.app",
     "description": "Backend and database integration",
     "image": "./assets/project_7.PNG"
   },
   {
-    "id": 8,
-    "title": "Project-8",
+    "id": 9,
+    "title": "Project-9",
     "link": "https://reset-assignment-11.web.app",
     "description": "added jwt token with fully integrated backend",
     "image": "./assets/project_8.PNG"
   },
   {
-    "id": 9,
-    "title": "Project-9",
+    "id": 10,
+    "title": "Project-10",
     "link": "https://assignment-12-d597e.web.app/",
     "description": "Project with different roles for example user or admin with backend integration",
     "image": "./assets/project_9.PNG"
