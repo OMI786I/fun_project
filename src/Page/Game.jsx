@@ -7,7 +7,7 @@ const Game = () => {
   const [isGameOver, setIsGameOver] = useState(false);
   const [score, setScore] = useState(0);
   const [click, setClick] = useState(true);
-  const [life, setLife] = useState(13);
+  const [life, setLife] = useState(15);
   const dinoRef = useRef(null);
   const obstacleRef = useRef(null);
   console.log(life);
@@ -35,10 +35,10 @@ const Game = () => {
       const obstacleRect = obstacleRef.current.getBoundingClientRect();
 
       if (
-        dinoRect.left < obstacleRect.right &&
         dinoRect.right > obstacleRect.left &&
-        dinoRect.top < obstacleRect.bottom &&
-        dinoRect.bottom > obstacleRect.top
+        dinoRect.left < obstacleRect.right &&
+        dinoRect.bottom > obstacleRect.top &&
+        dinoRect.top < obstacleRect.bottom
       ) {
         setLife(life - 1);
       }
@@ -73,18 +73,18 @@ const Game = () => {
     setIsGameOver(false);
     setObstaclePosition(100);
     setScore(0);
-    setLife(13);
+    setLife(15);
   };
 
   return (
     <div className="game-container">
-      <h1 className="game-title font-bold">University Life</h1>
+      <h1 className="game-title font-bold">Retake Dodger</h1>
       <p>Press spacebar or click jump</p>
       <div className="game-screen">
         <div className="score flex justify-center gap-5 ">
           <div>
             <span className="font-bold">Life: </span>
-            {Math.floor(life / 4)}
+            {Math.ceil(life / 5)}
           </div>
           <p>
             {" "}

@@ -13,8 +13,8 @@
 }
 
 .dino {
-  width: 40px;
-  height: 40px;
+  width: 5vw;
+  height: 5vw;
   background-color: green;
   position: absolute;
   bottom: 010px;
@@ -27,8 +27,9 @@
 }
 
 .obstacle {
-  width: 50px;
-  height: 30px;
+  font-size: 0.75rem;
+  width: 8vw;
+  height: 4vw;
   background-color: red;
   position: absolute;
   bottom: 010px;
@@ -57,11 +58,22 @@
   .dino {
     left: 7%;
   }
+
+  .obstacle {
+    font-size: 0.75rem;
+    width: 8vw;
+    height: 4vw;
+  }
 }
 
 @media (min-width: 768px) {
   .dino {
     left: 8%;
+  }
+  .obstacle {
+    font-size: 0.875rem;
+    width: 6vw;
+    height: 4vw;
   }
 }
 
@@ -69,10 +81,33 @@
   .dino {
     left: 9%;
   }
+  .game-screen {
+    height: 300px;
+  }
+  .dino.jump {
+    bottom: 100px;
+  }
 }
 
 @media (min-width: 1440px) {
   .dino {
     left: 10.5%;
+  }
+  .game-screen {
+    height: 500px;
+  }
+  .dino.jump {
+    bottom: 120px;
+  }
+}
+@media (min-width: 2560px) {
+  .dino {
+    left: 10.5%;
+  }
+  .game-screen {
+    height: 700px;
+  }
+  .dino.jump {
+    bottom: 160px;
   }
 }
