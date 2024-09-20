@@ -19,7 +19,7 @@ const Score = () => {
     queryKey: ["paginated-data", searchData, currentPage, asc],
     queryFn: async () => {
       const res = await axios.get(
-        `http://localhost:5000/score?sort=${
+        `https://fundb-three.vercel.app/score?sort=${
           asc ? "asc" : "desc"
         }&search=${searchData}&dataPerPage=${dataPerPage}&currentPage=${currentPage}`
       );

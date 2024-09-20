@@ -32,7 +32,7 @@ const Game = () => {
     };
     console.log(finalData);
     axios
-      .post("http://localhost:5000/score", finalData)
+      .post("https://fundb-three.vercel.app/score", finalData)
       .then((response) => {
         if (response.data.insertedId) {
           toast.success("Your score is successfully added");

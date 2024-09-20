@@ -13,7 +13,7 @@ const Feedback = () => {
 
   const onSubmit = (data) => {
     axios
-      .post("http://localhost:5000/feedback", data)
+      .post("https://fundb-three.vercel.app/feedback", data)
       .then((response) => {
         if (response.data.insertedId) {
           toast.success("Thank you for your feedback");
