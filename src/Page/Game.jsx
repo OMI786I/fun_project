@@ -2,7 +2,17 @@ import React, { useState, useEffect, useRef } from "react";
 import "./DinoGame.css"; // External CSS for styling
 import { Modal } from "react-responsive-modal";
 import "react-responsive-modal/styles.css";
+import { useForm } from "react-hook-form";
+import toast, { Toaster } from "react-hot-toast";
+import axios from "axios";
+
 const Game = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
   const [open, setOpen] = React.useState(false);
   const [isJumping, setIsJumping] = useState(false);
   const [obstaclePosition, setObstaclePosition] = useState(100);
@@ -13,6 +23,25 @@ const Game = () => {
   const dinoRef = useRef(null);
   const obstacleRef = useRef(null);
   console.log(life);
+
+  const onSubmit = (data) => {
+    console.log(data);
+
+    axios
+      .post("http://localhost:5000/score", data)
+      .then((response) => {
+        if (response.data.insertedId) {
+          toast.success("Your score is successfully added");
+          setOpen(false);
+        }
+        console.log(response);
+      })
+      .catch((error) => {
+        toast.error("There was an error adding the data");
+        console.log(error);
+      });
+  };
+
   const handleClick = () => {
     setClick(true);
     if (click === true) {
@@ -81,22 +110,53 @@ const Game = () => {
   return (
     <div className="game-container">
       <Modal open={open} onClose={() => setOpen(false)}>
-        <h2>Try tabbing/shift-tabbing thru elements</h2>
-        <form action="">
-          <p>
-            <label htmlFor="firstName">
-              First name (I should be focused be default)
-              <input type="text" />
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="space-y-4 p-4 bg-base-100 shadow-md rounded-lg"
+        >
+          {/* Name Input */}
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Name</span>
             </label>
-          </p>
-          <p>
-            <label htmlFor="lastName">
-              Last name
-              <input type="text" />
+            <input
+              type="text"
+              placeholder="Enter your name"
+              className={`input input-bordered w-full ${
+                errors.name ? "input-error" : ""
+              }`}
+              {...register("name", { required: true })}
+            />
+            {errors.name && (
+              <span className="text-sm text-error mt-1">
+                Name field is required
+              </span>
+            )}
+          </div>
+
+          {/* Score Input */}
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text">Score</span>
             </label>
-          </p>
-          <button>test</button>
-          <input type="submit" value="Submit" />
+            <input
+              type="number"
+              value={score}
+              placeholder="Your score"
+              className="input input-bordered w-full"
+              {...register("score")}
+              readOnly
+            />
+          </div>
+
+          {/* Submit Button */}
+          <div className="form-control">
+            <input
+              type="submit"
+              className="btn btn-sm btn-success text-white w-full"
+              value="Submit"
+            />
+          </div>
         </form>
       </Modal>
       <h1 className="game-title font-bold">Retake Dodger</h1>

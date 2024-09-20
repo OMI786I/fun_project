@@ -13,8 +13,8 @@
 }
 
 .dino {
-  width: 5vw;
-  height: 5vw;
+  width: 8vw;
+  height: 8vw;
   background-color: green;
   position: absolute;
   bottom: 010px;
@@ -28,7 +28,7 @@
 
 .obstacle {
   font-size: 0.75rem;
-  width: 8vw;
+  width: 10vw;
   height: 4vw;
   background-color: red;
   position: absolute;
@@ -72,7 +72,7 @@
   }
   .obstacle {
     font-size: 0.875rem;
-    width: 6vw;
+    width: 5vw;
     height: 4vw;
   }
 }
@@ -87,6 +87,9 @@
   .dino.jump {
     bottom: 100px;
   }
+  .obstacle {
+    font-size: 1rem;
+  }
 }
 
 @media (min-width: 1440px) {
@@ -99,6 +102,9 @@
   .dino.jump {
     bottom: 120px;
   }
+  .obstacle {
+    font-size: 1.5rem;
+  }
 }
 @media (min-width: 2560px) {
   .dino {
@@ -109,5 +115,8 @@
   }
   .dino.jump {
     bottom: 160px;
+  }
+  .obstacle {
+    font-size: 2.5rem;
   }
 }
