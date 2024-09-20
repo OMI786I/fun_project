@@ -50,6 +50,10 @@ const Game = () => {
     }
   };
 
+  const handleStop = () => {
+    setIsGameOver(true);
+  };
+
   console.log(click);
   useEffect(() => {
     // Handle jumping
@@ -184,9 +188,16 @@ const Game = () => {
           Retake
         </div>
       </div>
-      <div className="btn game_button" onClick={() => handleClick()}>
-        Jump
-      </div>{" "}
+      <div className="flex gap-7 justify-center md:my-12">
+        {" "}
+        <div className="btn game_button" onClick={() => handleClick()}>
+          Jump
+        </div>{" "}
+        <div className="btn game_button" onClick={() => handleStop()}>
+          Stop
+        </div>{" "}
+      </div>
+
       {/* Display the score */}
       {isGameOver && (
         <div className="game-over">
