@@ -17,7 +17,7 @@
   height: 40px;
   background-color: green;
   position: absolute;
-  bottom: 0;
+  bottom: 010px;
   left: 5%;
   transition: bottom 0.2s;
 }
@@ -27,11 +27,12 @@
 }
 
 .obstacle {
-  width: 30px;
+  width: 50px;
   height: 30px;
   background-color: red;
   position: absolute;
-  bottom: 0;
+  bottom: 010px;
+  color: white;
 }
 
 .game-over {

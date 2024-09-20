@@ -7,7 +7,7 @@ const Game = () => {
   const [isGameOver, setIsGameOver] = useState(false);
   const [score, setScore] = useState(0);
   const [click, setClick] = useState(true);
-  const [life, setLife] = useState(21);
+  const [life, setLife] = useState(13);
   const dinoRef = useRef(null);
   const obstacleRef = useRef(null);
   console.log(life);
@@ -73,7 +73,7 @@ const Game = () => {
     setIsGameOver(false);
     setObstaclePosition(100);
     setScore(0);
-    setLife(21);
+    setLife(13);
   };
 
   return (
@@ -84,7 +84,7 @@ const Game = () => {
         <div className="score flex justify-center gap-5 ">
           <div>
             <span className="font-bold">Life: </span>
-            {Math.ceil(life / 10)}
+            {Math.floor(life / 4)}
           </div>
           <p>
             {" "}
@@ -92,12 +92,16 @@ const Game = () => {
           </p>
         </div>{" "}
         {/* Display the score */}
-        <div ref={dinoRef} className={`dino ${isJumping ? "jump" : ""}`}></div>
+        <div ref={dinoRef} className={`dino ${isJumping ? "jump" : ""}`}>
+          <img src="Lidd7Me5T.gif" />
+        </div>
         <div
           ref={obstacleRef}
           className="obstacle"
           style={{ left: `${obstaclePosition}%` }}
-        ></div>
+        >
+          Retake
+        </div>
       </div>
       <div className="btn game_button" onClick={() => handleClick()}>
         Jump
@@ -105,7 +109,9 @@ const Game = () => {
       {/* Display the score */}
       {isGameOver && (
         <div className="game-over">
-          <h2>Game Over!</h2>
+          <h2 className="bg-red-600 w-[30%] mx-auto text-white my-4 rounded-xl">
+            Re Add!
+          </h2>
           <button className="game_button" onClick={restartGame}>
             Restart
           </button>
