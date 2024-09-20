@@ -25,10 +25,14 @@ const Game = () => {
   console.log(life);
 
   const onSubmit = (data) => {
-    console.log(data);
-
+    const scores = parseInt(data.score);
+    const finalData = {
+      name: data.name,
+      score: scores,
+    };
+    console.log(finalData);
     axios
-      .post("http://localhost:5000/score", data)
+      .post("http://localhost:5000/score", finalData)
       .then((response) => {
         if (response.data.insertedId) {
           toast.success("Your score is successfully added");
