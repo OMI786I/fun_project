@@ -6,6 +6,7 @@
   },
   {
     "title": "TicTacToe",
-    "link": "/tictactoe"
+    "link": "/tictactoe",
+    "image": "tictactoe.PNG"
   }
 ]

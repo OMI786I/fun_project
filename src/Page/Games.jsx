@@ -13,7 +13,7 @@ const Games = () => {
 
   return (
     <div>
-      <h1 className="font-bold text-3xl text-center">Games List</h1>
+      <h1 className="font-bold text-3xl text-center my-12">Games List</h1>
       <div className="md:flex gap-5">
         {data.map((res) => (
           <div key={res.title} className="card bg-base-100 w-80 shadow-xl">
